@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+{{block.super}}
+
+<h1 class="text-center">YOUR PROFILE</h1>
+<div class="container">
+      <div class="row">
+        {%for profile in profile%}
+        <div class="col-md-4">
+          <div class="card">
+            <img class="card-img-top" src="{{profile.profile_pic.url}}" alt="Card image cap">
+          </div>
+        </div>
+        <div class="col-md-8">   
+            <div class="card-">
+              <h2 class="card-title">{{profile.user.username}}</h2>
+              <h4 class="card-text">{{profile.bio}}</h4>
+            </div>
+         </div> 
+        {%endfor%}
+      </div>
+        <br>
+      <h2 class="text-center">YOUR IMAGES</h2>
+      <div class="row">
+        {%for image in images %}
+          <div class="col-md-4">
+            <img class="card-img-top" src="{{image.image.url}}" >
+            <div class="card-body">
+              <h5 class="card-title">{{image.name}}</h5>
+              <p class="card-text">{{image.caption}}</p>
+            </div>
+          </div>
+        {%endfor%}
+    
+      </div>
+</div>          
+{% endblock %}

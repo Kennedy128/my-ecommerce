@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+{{block.super}}
+<div class="container">
+  {%if posts%}
+  {% for post in posts %}
+    <div class="col-xs-8 ">
+      <div class="card">
+        <a href="{% url 'single_image' post.id%}"><img class="card-img-top"
+            style="width:600px; height:400px;object-fit: cover" src="{{post.image.url}}" alt=""></a>
+      <a href="/likes/{{post.id}}"><button class="btn-xs btn-primary" >like</button></a>
+     
+      <a href="{% url 'single_image' post.id%}"><button class="btn-xs btn-primary">More</button> </a>
+      </div>  
+    </div>
+    <br />
+  {% endfor%}   
+  {% else%} 
+  <h1>There are no posts</h1>
+  {% endif %}
+    
+</div>
+
+
+{% endblock %}

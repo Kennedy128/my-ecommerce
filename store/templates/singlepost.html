@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{%block content%}
+
+{{block.super}}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card " >
+          <img class="card-img-top" src="{{image.image.url}}" alt="Card image cap" id="">
+          <div class="card-body">
+            <h5 class="card-title">Name: {{image.name}}</h5>
+            <p class="card-text">Caption: {{image.caption}}</p>
+            <p class="card-text">Posted by: {{image.profile.user.username}}</p>
+            <p class="card-text"><i class="fa fa-heart fa-2x" aria-hidden="true"></i>Likes :{{no_of_likes}}</p>
+          </div>
+      </div> 
+    </div> 
+    <div class="col-md-7">
+      <h3>Post Comment</h3>
+      <form  action="{%url 'single_image'  image.id%}" method="POST">
+      {%csrf_token%}
+
+      {% bootstrap_form form %}
+      <input type="submit" class="btn btn-primary btn-lg" value="Write Comment">
+    </form>
+  </div> 
+  </div>       
+        <br />
+        <br />
+      
+  {%for comment in comments%}
+    <div class="card ">
+      <div class="card-body">
+        <h5 class="card-title">{{comment.image_id.image_name}}</h5>
+        <p class="card-text">{{comment.comment}}</p>
+        <p class="card-text">Posted by:{{comment.user_id.username}}</p>
+      </div>  
+    </div>
+
+
+  {%endfor%}  
+</div> 
+{% endblock %}

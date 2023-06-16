@@ -1,0 +1,43 @@
+{% load bootstrap4 %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Upload Image</title>
+    {{form.media}}
+
+    {% block styles %}
+    {% bootstrap_css %}
+    <script src="https://use.fontawesome.com/9be72edf7a.js"></script>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Reem+Kufi&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100&family=Handlee&family=Pacifico&family=Sacramento&family=Staatliches&display=swap" rel="stylesheet">
+    {% endblock %}
+
+</head>
+
+<body>
+    {% include "navbar.html"%}
+<div class ="container">
+    
+    <h1 style ="padding-top:50px;"class= "text-center"> Upload Image to Feed </h1>
+
+    <form action="{%url 'new_post'%}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+
+        {% bootstrap_form form%}
+        <input type="submit" class="btn btn-light " value=" Add image">
+    </form>
+
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %}
+    {% endblock %}
+</div>
+</body>
+
+</html>
