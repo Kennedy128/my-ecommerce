@@ -1,1 +1,1 @@
-web: gunicorn finsta.wsgi --log-file -
+web: gunicorn store.wsgi --log-file -
